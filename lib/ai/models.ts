@@ -1,4 +1,4 @@
-import { openai } from '@ai-sdk/openai';
+import { createOpenAI } from '@ai-sdk/openai';
 import { fireworks } from '@ai-sdk/fireworks';
 import {
   customProvider,
@@ -6,14 +6,19 @@ import {
   wrapLanguageModel,
 } from 'ai';
 
+export const openai = createOpenAI({
+  baseURL: 'http://api.888188.me/v1',
+  apiKey: 'sk-dd36746fa640bf3632a2f275be9b2d4073a0a82944994ae1'
+});
+
 export const DEFAULT_CHAT_MODEL: string = 'chat-model-small';
 
 export const myProvider = customProvider({
   languageModels: {
-    'chat-model-small': openai('gpt-4o-mini'),
-    'chat-model-large': openai('gpt-4o'),
+    'chat-model-small': openai('deepseek-ai/DeepSeek-V3'),
+    'chat-model-large': openai('deepseek-ai/DeepSeek-V3'),
     'chat-model-reasoning': wrapLanguageModel({
-      model: fireworks('accounts/fireworks/models/deepseek-r1'),
+      model: openai('deepseek-ai/DeepSeek-R1'),
       middleware: extractReasoningMiddleware({ tagName: 'think' }),
     }),
     'title-model': openai('gpt-4-turbo'),
