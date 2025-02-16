@@ -6,9 +6,13 @@ import {
   wrapLanguageModel,
 } from 'ai';
 
+// 从环境变量中获取配置信息
+const baseURL = process.env.OPENAI_BASE_URL;
+const apiKey = process.env.OPENAI_API_KEY;
+
 export const openai = createOpenAI({
-  baseURL: 'http://api.888188.me/v1',
-  apiKey: 'sk-dd36746fa640bf3632a2f275be9b2d4073a0a82944994ae1'
+  baseURL，
+  apiKey
 });
 
 export const DEFAULT_CHAT_MODEL: string = 'chat-model-small';
